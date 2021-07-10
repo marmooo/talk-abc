@@ -266,7 +266,7 @@ function countdown() {
 
 function formatReply(reply) {
   reply = reply.toLowerCase();
-  // switch (reply) {
+  switch (reply) {
     case 'be': return 'b';
     case 'sea': case 'see': return 'c';
     case 'jay': return 'j';
