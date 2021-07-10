@@ -264,6 +264,21 @@ function countdown() {
   }, 1000);
 }
 
+function formatReply(reply) {
+  reply = reply.toLowerCase();
+  // switch (reply) {
+    case 'be': return 'b';
+    case 'sea': case 'see': return 'c';
+    case 'jay': return 'j';
+    case 'light': return 'l';
+    case 'oh': return 'o';
+    case 'ar': case 'right': return 'r';
+    case 'you': return 'u';
+    case 'why': return 'y';
+  }
+  return reply;
+}
+
 function setVoiceInput() {
   if (!('webkitSpeechRecognition' in window)) {
     document.getElementById('nosupport').classList.remove('d-none');
@@ -287,7 +302,7 @@ function setVoiceInput() {
     voiceInput.onresult = (event) => {
       const reply = event.results[0][0].transcript;
       document.getElementById('reply').textContent = reply;
-      if (reply.toLowerCase() == answer.toLowerCase()) {
+      if (formatReply(reply) == answer.toLowerCase()) {
         playAudio(correctAudio);
         nextProblem();
       }
