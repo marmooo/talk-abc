@@ -140,7 +140,7 @@ function hideAnswer() {
 function nextProblem() {
   hideAnswer();
   answer = alphabet[getRandomInt(0, alphabet.length)];
-  document.getElementById('answer').textContent = answer;
+  // document.getElementById('answer').textContent = answer;
   if (localStorage.getItem('voice') != 0) {
     speak(answer);
   }
@@ -270,11 +270,16 @@ function formatReply(reply) {
     case 'be': return 'b';
     case 'sea': case 'see': return 'c';
     case 'jay': return 'j';
-    case 'light': return 'l';
     case 'oh': return 'o';
-    case 'ar': case 'right': return 'r';
+    case 'ar': return 'r';
     case 'you': return 'u';
     case 'why': return 'y';
+    case 'light': case 'fly': case 'lead': case 'play':
+    case 'lice': case 'glass': case 'liver': case 'load': case 'long':
+      return 'l';
+    case 'right': case 'fry': case 'read': case 'play':
+    case 'rice': case 'grass': case 'river': case 'road': case 'wrong':
+      return 'r';
   }
   return reply;
 }
