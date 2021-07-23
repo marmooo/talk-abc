@@ -331,5 +331,10 @@ function stopVoiceInput() {
 }
 
 
+[...document.getElementById('lr').getElementsByTagName('td')].forEach(tr => {
+  tr.onclick = function() {
+    speak(this.firstElementChild.textContent);
+  };
+});
 document.addEventListener('click', unlockAudio, { once:true, useCapture:true });
 

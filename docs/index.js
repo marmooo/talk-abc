@@ -27,4 +27,4 @@ function setVoiceInput(){if(!('webkitSpeechRecognition'in window)){document.getE
 voiceInput.stop();};return voiceInput;}}
 function startVoiceInput(){voiceInput.start();}
 function stopVoiceInput(){const startButton=document.getElementById('start-voice-input');const stopButton=document.getElementById('stop-voice-input');startButton.classList.remove('d-none');stopButton.classList.add('d-none');document.getElementById('reply').textContent='英語で答えてください';voiceInput.stop();}
-document.addEventListener('click',unlockAudio,{once:true,useCapture:true});
+[...document.getElementById('lr').getElementsByTagName('td')].forEach(tr=>{tr.onclick=function(){speak(this.firstElementChild.textContent);};});document.addEventListener('click',unlockAudio,{once:true,useCapture:true});
