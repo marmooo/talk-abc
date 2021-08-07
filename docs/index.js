@@ -11,7 +11,7 @@ loadVoices();function speak(text){speechSynthesis.cancel();const msg=new SpeechS
 function respeak(){speak(answer);}
 function getRandomInt(min,max){min=Math.ceil(min);max=Math.floor(max);return Math.floor(Math.random()*(max-min)+min);}
 function hideAnswer(){document.getElementById('reply').textContent='';}
-function nextProblem(){hideAnswer();solveCount+=1;answer=alphabet[getRandomInt(0,alphabet.length)];if(localStorage.getItem('voice')!=0){speak(answer);}
+function nextProblem(){hideAnswer();solveCount+=1;answer=alphabet[getRandomInt(0,alphabet.length)];document.getElementById('answer').textContent=answer;if(localStorage.getItem('voice')!=0){speak(answer);}
 if(firstRun){firstRun=false;}}
 function catNyan(){playAudio(errorAudio);}
 function loadImage(src){return new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=(e)=>reject(e);img.src=src;});}

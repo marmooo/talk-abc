@@ -142,7 +142,7 @@ function nextProblem() {
   hideAnswer();
   solveCount += 1;
   answer = alphabet[getRandomInt(0, alphabet.length)];
-  // document.getElementById('answer').textContent = answer;
+  document.getElementById('answer').textContent = answer;
   if (localStorage.getItem('voice') != 0) {
     speak(answer);
   }
