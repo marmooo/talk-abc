@@ -11,9 +11,9 @@ loadVoices();function speak(text){speechSynthesis.cancel();const msg=new SpeechS
 function respeak(){speak(answer);}
 function getRandomInt(min,max){min=Math.ceil(min);max=Math.floor(max);return Math.floor(Math.random()*(max-min)+min);}
 function hideAnswer(){document.getElementById('reply').textContent='';}
-function nextProblem(){hideAnswer();answer=problemCandidate.splice(getRandomInt(0,problemCandidate.length),1)[0];if(problemCandidate.length<=0){problemCandidate=Array.from(alphabet);}
-document.getElementById('answer').textContent=answer;if(localStorage.getItem('voice')!=0){speak(answer);}
-if(firstRun){firstRun=false;}else{updateChart(scoreChart,0,alphabet.indexOf(answer));solveCount+=1;}}
+function nextProblem(){hideAnswer();if(firstRun){firstRun=false;}else{updateChart(scoreChart,0,alphabet.indexOf(answer));solveCount+=1;}
+answer=problemCandidate.splice(getRandomInt(0,problemCandidate.length),1)[0];if(problemCandidate.length<=0){problemCandidate=Array.from(alphabet);}
+document.getElementById('answer').textContent=answer;if(localStorage.getItem('voice')!=0){speak(answer);}}
 function catNyan(){playAudio(errorAudio);}
 function loadImage(src){return new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=(e)=>reject(e);img.src=src;});}
 function loadCatImage(url){const imgSize=128;return new Promise((resolve,reject)=>{loadImage(url).then(originalImg=>{const canvas=document.createElement('canvas');canvas.width=imgSize;canvas.height=imgSize;canvas.style.position='absolute';canvas.getContext('2d').drawImage(originalImg,0,0);resolve(canvas);}).catch(e=>{console.log(e);});});}

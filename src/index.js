@@ -145,6 +145,12 @@ function hideAnswer() {
 
 function nextProblem() {
   hideAnswer();
+  if (firstRun) {
+    firstRun = false;
+  } else {
+    updateChart(scoreChart, 0, alphabet.indexOf(answer));
+    solveCount += 1;
+  }
   answer = problemCandidate.splice(getRandomInt(0, problemCandidate.length), 1)[0];
   if (problemCandidate.length <= 0) {
     problemCandidate = Array.from(alphabet);
@@ -152,12 +158,6 @@ function nextProblem() {
   document.getElementById('answer').textContent = answer;
   if (localStorage.getItem('voice') != 0) {
     speak(answer);
-  }
-  if (firstRun) {
-    firstRun = false;
-  } else {
-    updateChart(scoreChart, 0, alphabet.indexOf(answer));
-    solveCount += 1;
   }
 }
 
