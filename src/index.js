@@ -3,12 +3,17 @@ loadAudios();
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const audioContext = new AudioContext();
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let problemCandidate = Array.from(alphabet);
 let voiceInput = null;
 let answer = 'Talk ABC';
 let firstRun = true;
 let catCounter = 0;
 let solveCount = 0;
+let correctArray = new Array(26).fill(0);
+let incorrectArray = new Array(26).fill(0);
 let englishVoices = [];
+let scoreChart = initChart();
+
 
 function loadConfig() {
   if (localStorage.getItem('darkMode') == 1) {
@@ -140,14 +145,19 @@ function hideAnswer() {
 
 function nextProblem() {
   hideAnswer();
-  solveCount += 1;
-  answer = alphabet[getRandomInt(0, alphabet.length)];
+  answer = problemCandidate.splice(getRandomInt(0, problemCandidate.length), 1)[0];
+  if (problemCandidate.length <= 0) {
+    problemCandidate = Array.from(alphabet);
+  }
   document.getElementById('answer').textContent = answer;
   if (localStorage.getItem('voice') != 0) {
     speak(answer);
   }
   if (firstRun) {
     firstRun = false;
+  } else {
+    updateChart(scoreChart, 0, alphabet.indexOf(answer));
+    solveCount += 1;
   }
 }
 
@@ -273,9 +283,57 @@ function scoring() {
   document.getElementById('score').textContent = solveCount;
 }
 
+function updateChart(chart, labelPos, pos) {
+  if (labelPos == 0) {
+    correctArray[pos] += 1;
+    chart.data.datasets[labelPos].data = correctArray.slice();
+  } else {
+    incorrectArray[pos] += 1;
+    chart.data.datasets[labelPos].data = incorrectArray.slice();
+  }
+  chart.update();
+}
+
+function initChart() {
+  const data = {
+    labels: Array.from(alphabet),
+    datasets: [{
+      label: 'OK',
+      data: new Array(alphabet.length),
+      borderColor: 'rgba(0,0,255,1)',
+      backgroundColor: 'rgba(0,0,255,0.5)',
+    },
+    {
+      label: 'NG',
+      data: new Array(alphabet.length),
+      borderColor: 'rgba(255,0,0,1)',
+      backgroundColor: 'rgba(255,0,0,0.5)',
+    }]
+  };
+  const config = {
+    type: 'bar',
+    data: data,
+    options: {
+      responsive: true,
+      aspectRatio: 4,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: false,
+          text: '正答数 / 誤答数'
+        }
+      }
+    },
+  };
+  return new Chart(document.getElementById('chart'), config);
+}
+
 function formatReply(reply) {
   reply = reply.toLowerCase();
   switch (reply) {
+    case 'hey': return 'a';
     case 'be': return 'b';
     case 'sea': case 'see': return 'c';
     case 'jay': return 'j';
@@ -319,6 +377,8 @@ function setVoiceInput() {
       if (formatReply(reply) == answer.toLowerCase()) {
         playAudio(correctAudio);
         nextProblem();
+      } else {
+        updateChart(scoreChart, 1, alphabet.indexOf(answer));
       }
       voiceInput.stop();
     };

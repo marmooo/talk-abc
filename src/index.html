@@ -88,6 +88,9 @@
           <span id="score" class="h1">0</span>
           <ruby>問<rp>(</rp><rt>もん</rt><rp>)</rp></ruby>！
         </div>
+        <div class="pb-3">
+          <canvas id="chart" width="300" height="300"></canvas>
+        </div>
         <button onclick="countdown()" type="button" class="btn btn-primary btn-lg m-1">リスタート</button>
       </div>
       <div id="playPanel">
@@ -131,7 +134,7 @@
             <div class="alert alert-info text-center">
               <div class="h5">
                 <label><ruby>時間<rp>(</rp><rt>じかん</rt><rp>)</rp></ruby>:</label>
-                <span id="time" class="ms-1">60秒 / 60秒</span>
+                <span id="time" class="ms-1">120秒 / 120秒</span>
               </div>
               <button onclick="countdown()" class="btn btn-primary btn-lg">スタート</button>
             </div>
@@ -167,6 +170,7 @@
       <div class="text-muted">&copy; <a href="https://github.com/marmooo">marmooo</a>
       </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js" integrity="sha256-yz7K02nILYEeRDwEfzu/1zI9SpBKod/nLYMTFh7vszs=" crossorigin="anonymous"></script>
     <script src="index.js"></script>
   </body>
 </html>
