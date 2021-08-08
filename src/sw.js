@@ -8,7 +8,7 @@ var urlsToCache = [
   '/talk-abc/mp3/cat.mp3',
   '/talk-abc/mp3/correct3.mp3',
   '/talk-abc/favicon/original.svg',
-  'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css',
+  'https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css',
   'https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js',
 ];
 
