@@ -46,7 +46,7 @@ function toggleVoice() {
     document.getElementById("voiceOn").classList.remove("d-none");
     document.getElementById("voiceOff").classList.add("d-none");
     voiceInput.stop();
-    speak(answer);
+    speak(answer.toLowerCase());
   }
 }
 
@@ -131,7 +131,7 @@ function speak(text) {
 }
 
 function respeak() {
-  speak(answer);
+  speak(answer.toLowerCase());
 }
 
 function getRandomInt(min, max) {
@@ -159,7 +159,7 @@ function nextProblem() {
   }
   document.getElementById("answer").textContent = answer;
   if (localStorage.getItem("voice") != 0) {
-    speak(answer);
+    speak(answer.toLoswerCase());
   }
 }
 
@@ -206,7 +206,7 @@ function catWalk(freq, catCanvas) {
   canvas.style.top = getRandomInt(0, height - size) + "px";
   canvas.style.left = width - size + "px";
   canvas.addEventListener("click", function () {
-    speak(alphabet[catCounter]);
+    speak(alphabet[catCounter].toLowerCase());
     if (catCounter >= alphabet.length - 1) {
       catCounter = 0;
     } else {
