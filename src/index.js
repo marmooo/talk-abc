@@ -166,7 +166,7 @@ function nextProblem() {
   }
   document.getElementById("answer").textContent = answer;
   if (localStorage.getItem("voice") != 0) {
-    speak(answer.toLoswerCase());
+    speak(answer.toLowerCase());
   }
 }
 
