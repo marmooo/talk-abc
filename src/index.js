@@ -1,18 +1,18 @@
-let endAudio, errorAudio, correctAudio;
-loadAudios();
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-const audioContext = new AudioContext();
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let problemCandidate = Array.from(alphabet);
-let voiceInput = null;
 let answer = "Talk ABC";
 let firstRun = true;
 let catCounter = 0;
 let solveCount = 0;
-let englishVoices = [];
 const correctArray = new Array(26).fill(0);
 const incorrectArray = new Array(26).fill(0);
 const scoreChart = initChart();
+let englishVoices = [];
+const voiceInput = setVoiceInput();
+let endAudio, errorAudio, correctAudio;
+loadAudios();
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const audioContext = new AudioContext();
 loadConfig();
 
 function loadConfig() {
