@@ -1,8 +1,9 @@
-var CACHE_NAME = "2022-06-08 00:25";
+var CACHE_NAME = "2022-06-08 00:35";
 var urlsToCache = [
   "/talk-abc/",
   "/talk-abc/kohacu.webp",
   "/talk-abc/index.js",
+  "/talk-abc/index.yomi",
   "/talk-abc/mp3/incorrect1.mp3",
   "/talk-abc/mp3/end.mp3",
   "/talk-abc/mp3/cat.mp3",
