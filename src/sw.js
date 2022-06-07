@@ -1,4 +1,4 @@
-var CACHE_NAME = "2022-06-08 00:10";
+var CACHE_NAME = "2022-06-08 00:25";
 var urlsToCache = [
   "/talk-abc/",
   "/talk-abc/kohacu.webp",
@@ -8,6 +8,7 @@ var urlsToCache = [
   "/talk-abc/mp3/cat.mp3",
   "/talk-abc/mp3/correct3.mp3",
   "/talk-abc/favicon/favicon.svg",
+  "https://marmooo.github.io/yomico/yomico.min.js",
   "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
   "https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js",
 ];

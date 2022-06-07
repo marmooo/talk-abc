@@ -29,6 +29,11 @@ function loadConfig() {
     document.getElementById("voiceOn").classList.remove("d-none");
     document.getElementById("voiceOff").classList.add("d-none");
   }
+  if (localStorage.getItem("furigana") == 1) {
+    const obj = document.getElementById("addFurigana");
+    addFurigana(obj);
+    obj.setAttribute("data-done", true);
+  }
 }
 
 function toggleDarkMode() {
@@ -38,6 +43,20 @@ function toggleDarkMode() {
   } else {
     localStorage.setItem("darkMode", 1);
     document.documentElement.dataset.theme = "dark";
+  }
+}
+
+function addFurigana() {
+  const obj = document.getElementById("addFurigana");
+  if (obj.getAttribute("data-done")) {
+    localStorage.setItem("furigana", 0);
+    location.reload();
+  } else {
+    import("https://marmooo.github.io/yomico/yomico.min.js").then((module) => {
+      module.yomico("index.yomi");
+    });
+    localStorage.setItem("furigana", 1);
+    obj.setAttribute("data-done", true);
   }
 }
 
@@ -126,7 +145,6 @@ function loadVoices() {
   });
   allVoicesObtained.then((voices) => {
     englishVoices = voices.filter((voice) => voice.lang == "en-US");
-    voiceInput = setVoiceInput();
   });
 }
 loadVoices();
@@ -443,6 +461,7 @@ function stopVoiceInput() {
 }
 
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
+document.getElementById("addFurigana").onclick = addFurigana;
 document.getElementById("toggleVoice").onclick = toggleVoice;
 document.getElementById("restartButton").onclick = countdown;
 document.getElementById("startButton").onclick = countdown;
