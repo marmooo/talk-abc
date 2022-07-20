@@ -60,21 +60,6 @@ function addFurigana() {
   }
 }
 
-function toggleVoice() {
-  if (localStorage.getItem("voice") != 0) {
-    localStorage.setItem("voice", 0);
-    document.getElementById("voiceOn").classList.add("d-none");
-    document.getElementById("voiceOff").classList.remove("d-none");
-    speechSynthesis.cancel();
-  } else {
-    localStorage.setItem("voice", 1);
-    document.getElementById("voiceOn").classList.remove("d-none");
-    document.getElementById("voiceOff").classList.add("d-none");
-    voiceInput.stop();
-    speak(answer.toLowerCase());
-  }
-}
-
 function playAudio(audioBuffer, volume) {
   const audioSource = audioContext.createBufferSource();
   audioSource.buffer = audioBuffer;
@@ -189,9 +174,7 @@ function nextProblem() {
     problemCandidate = Array.from(alphabet);
   }
   document.getElementById("answer").textContent = answer;
-  if (localStorage.getItem("voice") != 0) {
-    speak(answer.toLowerCase());
-  }
+  speak(answer.toLowerCase());
 }
 
 function catNyan() {
@@ -462,7 +445,6 @@ function stopVoiceInput() {
 
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
 document.getElementById("addFurigana").onclick = addFurigana;
-document.getElementById("toggleVoice").onclick = toggleVoice;
 document.getElementById("restartButton").onclick = countdown;
 document.getElementById("startButton").onclick = countdown;
 document.getElementById("respeak").onclick = respeak;
