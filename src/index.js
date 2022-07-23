@@ -25,10 +25,6 @@ function loadConfig() {
   if (localStorage.getItem("darkMode") == 1) {
     document.documentElement.dataset.theme = "dark";
   }
-  if (localStorage.getItem("voice") == 0) {
-    document.getElementById("voiceOn").classList.remove("d-none");
-    document.getElementById("voiceOff").classList.add("d-none");
-  }
   if (localStorage.getItem("furigana") == 1) {
     const obj = document.getElementById("addFurigana");
     addFurigana(obj);
@@ -401,7 +397,10 @@ function setVoiceInput() {
     // voiceInput.interimResults = true;
     voiceInput.continuous = true;
 
-    voiceInput.onstart = () => voiceInputOnStart;
+    voiceInput.onstart = () => {
+      document.getElementById("startVoiceInput").classList.add("d-none");
+      document.getElementById("stopVoiceInput").classList.remove("d-none");
+    };
     voiceInput.onend = () => {
       if (!speechSynthesis.speaking) {
         voiceInput.start();
@@ -424,21 +423,13 @@ function setVoiceInput() {
   }
 }
 
-function voiceInputOnStart() {
-  document.getElementById("startVoiceInput").classList.add("d-none");
-  document.getElementById("stopVoiceInput").classList.remove("d-none");
-}
-
-function voiceInputOnStop() {
-  document.getElementById("startVoiceInput").classList.remove("d-none");
-  document.getElementById("stopVoiceInput").classList.add("d-none");
-}
-
 function startVoiceInput() {
   voiceInput.start();
 }
 
 function stopVoiceInput() {
+  document.getElementById("startVoiceInput").classList.remove("d-none");
+  document.getElementById("stopVoiceInput").classList.add("d-none");
   voiceInput.start();
   voiceInput.stop();
 }
