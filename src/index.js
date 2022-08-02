@@ -424,7 +424,11 @@ function setVoiceInput() {
 }
 
 function startVoiceInput() {
-  voiceInput.start();
+  try {
+    voiceInput.start();
+  } catch {
+    // continue regardless of error
+  }
 }
 
 function stopVoiceInput() {
