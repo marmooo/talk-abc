@@ -191,6 +191,7 @@ function loadCatImage(url) {
   return new Promise((resolve) => {
     loadImage(url).then((originalImg) => {
       const canvas = document.createElement("canvas");
+      canvas.setAttribute("role", "button");
       canvas.width = imgSize;
       canvas.height = imgSize;
       canvas.style.position = "absolute";
@@ -446,9 +447,9 @@ document.getElementById("respeak").onclick = respeak;
 document.getElementById("startVoiceInput").onclick = startVoiceInput;
 document.getElementById("stopVoiceInput").onclick = stopVoiceInput;
 document.getElementById("kohacu").onclick = catNyan;
-[...document.getElementById("lr").getElementsByTagName("td")].forEach((tr) => {
-  tr.onclick = () => {
-    speak(tr.firstElementChild.textContent);
+[...document.getElementById("lr").getElementsByTagName("button")].forEach((button) => {
+  button.onclick = () => {
+    speak(button.firstElementChild.textContent);
   };
 });
 document.addEventListener("click", unlockAudio, {

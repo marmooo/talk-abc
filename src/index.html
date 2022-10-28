@@ -33,13 +33,12 @@
     <link rel="manifest" href="/talk-abc/favicon/site.webmanifest">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <style>
-      #lr tr { cursor:pointer; touch-action:none; }
       #counter {
         font-size:10rem; width:12rem; height:12rem; line-height:12rem; border-radius: 50%;
         background:tomato; margin:auto; }
       #catsWalk { height:30vh; text-align:center; position:relative; }
       #langRadio { max-height:100px; overflow-y:scroll; }
-      img,canvas { cursor:pointer; touch-action:none; }
+      img,canvas { touch-action:none; }
       html { overflow-x:hidden; }
       html[data-theme="dark"] { filter: invert(1) hue-rotate(180deg); }
       @-moz-document url-prefix() { html[data-theme="dark"] { background-color:black; } }
@@ -84,31 +83,31 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
             <p>語尾をはっきり発音するのがポイントです。
             それでも L と R は難しいので、以下の単語でも OK です。
             </p>
-            <table id="lr" class="table table-sm table-striped text-nowrap">
-              <tbody>
+            <table class="table table-sm table-striped text-nowrap">
+              <tbody id="lr">
                 <tr>
                   <th class="notranslate">L</th>
-                  <td><span class="notranslate">light</span><br><span>あかり</span></td>
-                  <td><span class="notranslate">fly</span><br><span>飛ぶ</span></td>
-                  <td><span class="notranslate">lead</span><br><span>導く</span></td>
-                  <td><span class="notranslate">play</span><br><span>遊ぶ</span></td>
-                  <td><span class="notranslate">lice</span><br><span>シラミ</span></td>
-                  <td><span class="notranslate">glass</span><br><span>グラス</span></td>
-                  <td><span class="notranslate">liver</span><br><span>肝臓</span></td>
-                  <td><span class="notranslate">load</span><br><span>積荷</span></td>
-                  <td><span class="notranslate">long</span><br><span>長い</span></td>
+                  <td><button class="btn p-0"><span class="notranslate">light</span><br><span>あかり</span></button></td>
+                  <td><button class="btn p-0"><span class="notranslate">fly</span><br><span>飛ぶ</span></button></td>
+                  <td><button class="btn p-0"><span class="notranslate">lead</span><br><span>導く</span></button></td>
+                  <td><button class="btn p-0"><span class="notranslate">play</span><br><span>遊ぶ</span></button></td>
+                  <td><button class="btn p-0"><span class="notranslate">lice</span><br><span>シラミ</span></button></td>
+                  <td><button class="btn p-0"><span class="notranslate">glass</span><br><span>グラス</span></button></td>
+                  <td><button class="btn p-0"><span class="notranslate">liver</span><br><span>肝臓</span></button></td>
+                  <td><button class="btn p-0"><span class="notranslate">load</span><br><span>積荷</span></button></td>
+                  <td><button class="btn p-0"><span class="notranslate">long</span><br><span>長い</span></button></td>
                 </tr>
                 <tr>
                   <th class="notranslate">R</th>
-                  <td><span class="notranslate">right</span><br><span>正しい</span></td>
-                  <td><span class="notranslate">fry</span><br><span>揚げる</span></td>
-                  <td><span class="notranslate">read</span><br><span>読む</span></td>
-                  <td><span class="notranslate">pray</span><br><span>祈る</span></td>
-                  <td><span class="notranslate">rice</span><br><span>ごはん</span></td>
-                  <td><span class="notranslate">grass</span><br><span>草</span></td>
-                  <td><span class="notranslate">river</span><br><span>川</span></td>
-                  <td><span class="notranslate">road</span><br><span>道</span></td>
-                  <td><span class="notranslate">wrong</span><br><span>誤った</span></td>
+                  <td><button class="btn p-0"><span class="notranslate">right</span><br><span>正しい</span></button></td>
+                  <td><button class="btn p-0"><span class="notranslate">fry</span><br><span>揚げる</span></button></td>
+                  <td><button class="btn p-0"><span class="notranslate">read</span><br><span>読む</span></button></td>
+                  <td><button class="btn p-0"><span class="notranslate">pray</span><br><span>祈る</span></button></td>
+                  <td><button class="btn p-0"><span class="notranslate">rice</span><br><span>ごはん</span></button></td>
+                  <td><button class="btn p-0"><span class="notranslate">grass</span><br><span>草</span></button></td>
+                  <td><button class="btn p-0"><span class="notranslate">river</span><br><span>川</span></button></td>
+                  <td><button class="btn p-0"><span class="notranslate">road</span><br><span>道</span></button></td>
+                  <td><button class="btn p-0"><span class="notranslate">wrong</span><br><span>誤った</span></button></td>
                 </tr>
               </tbody>
             </table>
@@ -145,7 +144,7 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
           </div>
         </div>
         <div id="catsWalk" class="pt-4 notranslate">
-          <img id="kohacu" src="kohacu.webp" width="128" height="128" alt="kohacu">
+          <img id="kohacu" src="kohacu.webp" width="128" height="128" alt="kohacu" role="button">
         </div>
       </div>
       <div id="countPanel" class="text-center d-none notranslate">
