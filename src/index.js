@@ -1,6 +1,7 @@
 const replyPlease = document.getElementById("replyPlease");
 const reply = document.getElementById("reply");
 const playPanel = document.getElementById("playPanel");
+const infoPanel = document.getElementById("infoPanel");
 const countPanel = document.getElementById("countPanel");
 const scorePanel = document.getElementById("scorePanel");
 const gameTime = 180;
@@ -281,6 +282,7 @@ function countdown() {
   solveCount = 0;
   clearTimeout(countdownTimer);
   countPanel.classList.remove("d-none");
+  infoPanel.classList.add("d-none");
   playPanel.classList.add("d-none");
   scorePanel.classList.add("d-none");
   const counter = document.getElementById("counter");
@@ -294,6 +296,7 @@ function countdown() {
     } else {
       clearTimeout(countdownTimer);
       countPanel.classList.add("d-none");
+      infoPanel.classList.remove("d-none");
       playPanel.classList.remove("d-none");
       solveCount = 0;
       document.getElementById("score").textContent = 0;
