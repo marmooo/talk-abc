@@ -426,7 +426,7 @@ function setVoiceInput() {
       document.getElementById("reply").textContent = replyText;
       if (formatReply(replyText) == answer.toLowerCase()) {
         playAudio("correct");
-        nextProblem();
+        setTimeout(nextProblem, 500);
       } else {
         updateChart(scoreChart, 1, alphabet.indexOf(answer));
       }
