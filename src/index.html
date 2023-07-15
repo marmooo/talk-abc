@@ -35,11 +35,11 @@
     <style>
       #counter {
         font-size:10rem; width:12rem; height:12rem; line-height:12rem; border-radius: 50%;
-        background:tomato; margin:auto; }
+        background:tomato; color:black; margin:auto; }
       #catsWalk { height:30vh; text-align:center; position:relative; }
       #langRadio { max-height:100px; overflow-y:scroll; }
       img,canvas { touch-action:none; }
-      html[data-bs-theme="dark"] .navbar-brand > img { filter: invert(1) hue-rotate(180deg); }
+      html[data-bs-theme="dark"] .favicon { filter: invert(1) hue-rotate(180deg); }
     </style>
   </head>
   <body>
@@ -47,7 +47,7 @@
       <nav class="navbar navbar-expand navbar-light">
         <div class="container flex-wrap">
           <a class="navbar-brand" href="/talk-abc/">
-            <img alt="Talk ABC" src="/talk-abc/favicon/favicon.svg" width="32" height="32">
+            <img class="favicon" alt="Talk ABC" src="/talk-abc/favicon/favicon.svg" width="32" height="32">
             Talk ABC
           </a>
           <div class="navbar-nav">
@@ -149,7 +149,7 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
       </div>
       <div id="countPanel" class="text-center d-none notranslate">
         <div id="countdown">
-          <div id="counter" class="text-dark"></div>
+          <div id="counter"></div>
           <img src="kohacu.webp" width="128" height="128" alt="">
         </div>
       </div>
