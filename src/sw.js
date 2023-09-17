@@ -9,7 +9,7 @@ const urlsToCache = [
   "/talk-abc/kohacu.webp",
   "/talk-abc/favicon/favicon.svg",
   "https://marmooo.github.io/yomico/yomico.min.js",
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css",
   "https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.js",
 ];
 
