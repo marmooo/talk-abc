@@ -1,4 +1,4 @@
-const CACHE_NAME = "2023-12-29 01:00";
+const CACHE_NAME = "2024-02-25 09:42";
 const urlsToCache = [
   "/talk-abc/",
   "/talk-abc/index.js",
@@ -9,7 +9,7 @@ const urlsToCache = [
   "/talk-abc/kohacu.webp",
   "/talk-abc/favicon/favicon.svg",
   "https://marmooo.github.io/yomico/yomico.min.js",
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
   "https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.js",
 ];
 
