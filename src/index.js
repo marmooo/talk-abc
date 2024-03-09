@@ -16,7 +16,7 @@ const incorrectArray = new Array(26).fill(0);
 const scoreChart = initChart();
 let englishVoices = [];
 const voiceInput = setVoiceInput();
-const audioContext = new AudioContext();
+const audioContext = new globalThis.AudioContext();
 const audioBufferCache = {};
 loadAudio("end", "mp3/end.mp3");
 loadAudio("error", "mp3/cat.mp3");
@@ -147,7 +147,7 @@ loadVoices();
 
 function speak(text) {
   speechSynthesis.cancel();
-  const msg = new SpeechSynthesisUtterance(text);
+  const msg = new globalThis.SpeechSynthesisUtterance(text);
   msg.onend = () => {
     voiceInput.start();
   };
@@ -194,7 +194,7 @@ function catNyan() {
 
 function loadImage(src) {
   return new Promise((resolve, reject) => {
-    const img = new Image();
+    const img = new globalThis.Image();
     img.onload = () => resolve(img);
     img.onerror = (e) => reject(e);
     img.src = src;
@@ -407,10 +407,10 @@ function formatReply(replyText) {
 }
 
 function setVoiceInput() {
-  if (!("webkitSpeechRecognition" in window)) {
+  if (!globalThis.webkitSpeechRecognition) {
     document.getElementById("noSTT").classList.remove("d-none");
   } else {
-    const voiceInput = new webkitSpeechRecognition();
+    const voiceInput = new globalThis.webkitSpeechRecognition();
     voiceInput.lang = "en-US";
     // voiceInput.interimResults = true;
     voiceInput.continuous = true;
