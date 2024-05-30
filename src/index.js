@@ -397,12 +397,13 @@ function formatReply(replyText) {
       return "j";
     case "oh":
       return "o";
-    case "ar":
-      return "r";
     case "you":
       return "u";
     case "why":
       return "y";
+    case "all":
+    case "al":
+    case "ale":
     case "light":
     case "fly":
     case "lead":
@@ -413,6 +414,7 @@ function formatReply(replyText) {
     case "load":
     case "long":
       return "l";
+    case "are":
     case "right":
     case "fry":
     case "read":
