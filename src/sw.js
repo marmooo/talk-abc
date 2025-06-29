@@ -1,4 +1,4 @@
-const CACHE_NAME = "2025-06-22 03:20";
+const CACHE_NAME = "2025-06-29 00:00";
 const urlsToCache = [
   "/talk-abc/",
   "/talk-abc/index.js",
@@ -10,7 +10,6 @@ const urlsToCache = [
   "/talk-abc/favicon/favicon.svg",
   "https://marmooo.github.io/yomico/yomico.min.js",
   "https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css",
-  "https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.js",
 ];
 
 self.addEventListener("install", (event) => {
