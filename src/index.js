@@ -1,3 +1,13 @@
+import {
+  BarController,
+  BarElement,
+  CategoryScale,
+  Chart,
+  LinearScale,
+} from "https://cdn.jsdelivr.net/npm/chart.js@4.5.0/+esm";
+
+Chart.register(BarController, BarElement, CategoryScale, LinearScale);
+
 const replyPlease = document.getElementById("replyPlease");
 const reply = document.getElementById("reply");
 const playPanel = document.getElementById("playPanel");
@@ -385,52 +395,6 @@ function initChart() {
   return new Chart(document.getElementById("chart"), config);
 }
 
-function formatReply(replyText) {
-  replyText = replyText.toLowerCase();
-  switch (replyText) {
-    case "hey":
-      return "a";
-    case "be":
-      return "b";
-    case "sea":
-    case "see":
-      return "c";
-    case "jay":
-      return "j";
-    case "oh":
-      return "o";
-    case "you":
-      return "u";
-    case "why":
-      return "y";
-    case "all":
-    case "al":
-    case "ale":
-    case "light":
-    case "fly":
-    case "lead":
-    case "play":
-    case "lice":
-    case "glass":
-    case "liver":
-    case "load":
-    case "long":
-      return "l";
-    case "are":
-    case "right":
-    case "fry":
-    case "read":
-    case "pray":
-    case "rice":
-    case "grass":
-    case "river":
-    case "road":
-    case "wrong":
-      return "r";
-  }
-  return replyText;
-}
-
 function setVoiceInput() {
   if (!globalThis.webkitSpeechRecognition) {
     document.getElementById("noSTT").classList.remove("d-none");
@@ -452,7 +416,7 @@ function setVoiceInput() {
     voiceInput.onresult = (event) => {
       const replyText = event.results[0][0].transcript;
       document.getElementById("reply").textContent = replyText;
-      if (formatReply(replyText) == answer.toLowerCase()) {
+      if (replyText[0] == answer.toLowerCase()) {
         playAudio("correct", 0.3);
         setTimeout(nextProblem, 500);
       } else {
