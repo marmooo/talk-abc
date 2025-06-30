@@ -391,6 +391,35 @@ function initChart() {
   return new Chart(document.getElementById("chart"), config);
 }
 
+function formatReply(replyText) {
+  replyText = replyText.toLowerCase();
+  switch (replyText) {
+    case "hey":
+      return "a";
+    case "be":
+      return "b";
+    case "sea":
+    case "see":
+      return "c";
+    case "jay":
+      return "j";
+    case "oh":
+      return "o";
+    case "you":
+      return "u";
+    case "why":
+      return "y";
+    case "all":
+    case "al":
+    case "ale":
+      return "l";
+    case "are":
+      return "r";
+    default:
+      return replyText[0].toLowerCase();
+  }
+}
+
 function setVoiceInput() {
   if (!globalThis.webkitSpeechRecognition) {
     document.getElementById("noSTT").classList.remove("d-none");
@@ -408,7 +437,7 @@ function setVoiceInput() {
       voiceInput.stop();
       const replyText = event.results[0][0].transcript;
       reply.textContent = replyText;
-      if (replyText[0].toLowerCase() == answer.toLowerCase()) {
+      if (formatReply(replyText) == answer.toLowerCase()) {
         playAudio("correct", 0.3);
         nextProblem();
         replyPlease.classList.remove("d-none");
