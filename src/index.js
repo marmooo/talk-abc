@@ -12,6 +12,8 @@ const playPanel = document.getElementById("playPanel");
 const infoPanel = document.getElementById("infoPanel");
 const countPanel = document.getElementById("countPanel");
 const scorePanel = document.getElementById("scorePanel");
+const replyPlease = document.getElementById("replyPlease");
+const reply = document.getElementById("reply");
 const gameTime = 180;
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let problemCandidate = Array.from(alphabet);
@@ -75,10 +77,6 @@ function createAudioContext() {
 }
 
 function unlockAudio() {
-  const uttr = new SpeechSynthesisUtterance("");
-  uttr.lang = "en-US";
-  speechSynthesis.speak(uttr);
-
   if (audioContext) {
     audioContext.resume();
   } else {
@@ -198,7 +196,7 @@ function getRandomInt(min, max) {
 }
 
 function hideAnswer() {
-  document.getElementById("reply").textContent = "";
+  reply.textContent = "";
 }
 
 function nextProblem() {
@@ -310,6 +308,7 @@ function startGameTimer() {
 }
 
 function countdown() {
+  speak(""); // unlock
   solveCount = 0;
   countPanel.classList.remove("d-none");
   infoPanel.classList.add("d-none");
@@ -408,7 +407,7 @@ function setVoiceInput() {
     voiceInput.onresult = (event) => {
       voiceInput.stop();
       const replyText = event.results[0][0].transcript;
-      document.getElementById("reply").textContent = replyText;
+      reply.textContent = replyText;
       if (replyText[0].toLowerCase() == answer.toLowerCase()) {
         playAudio("correct", 0.3);
         nextProblem();
