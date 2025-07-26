@@ -308,7 +308,7 @@ function startGameTimer() {
 }
 
 function countdown() {
-  speak(""); // unlock
+  speak("Ready"); // unlock
   solveCount = 0;
   countPanel.classList.remove("d-none");
   infoPanel.classList.add("d-none");
