@@ -40,6 +40,7 @@
       #langRadio { max-height:100px; overflow-y:scroll; }
       img,canvas { touch-action:none; }
       html[data-bs-theme="dark"] .favicon { filter: invert(1) hue-rotate(180deg); }
+      html[data-bs-theme="dark"] .chart { filter: invert(1) hue-rotate(180deg); }
     </style>
   </head>
   <body>
@@ -152,7 +153,7 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
         <div class="h2 pb-3">
           <span id="score" class="h1 notranslate"></span>
         </div>
-        <canvas id="chart" class="pb-3 notranslate" width="300" height="300"></canvas>
+        <canvas id="chart" class="chart" class="pb-3 notranslate" width="300" height="300"></canvas>
         <button id="restartButton" class="btn btn-primary btn-lg" type="button">リスタート</button>
       </div>
     </main>
