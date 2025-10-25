@@ -5,6 +5,7 @@ import {
   Chart,
   LinearScale,
 } from "https://cdn.jsdelivr.net/npm/chart.js@4.5.0/+esm";
+import { createWorker } from "https://cdn.jsdelivr.net/npm/emoji-particle@0.0.4/+esm";
 
 Chart.register(BarController, BarElement, CategoryScale, LinearScale);
 
@@ -16,11 +17,13 @@ const replyPlease = document.getElementById("replyPlease");
 const reply = document.getElementById("reply");
 const gameTime = 180;
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const emojiParticle = initEmojiParticle();
+const maxParticleCount = 10;
 let problemCandidate = Array.from(alphabet);
 let answer = "Talk ABC";
 let firstRun = true;
 let catCounter = 0;
-let solveCount = 0;
+let correctCount = 0;
 const correctArray = new Array(26).fill(0);
 const incorrectArray = new Array(26).fill(0);
 const scoreChart = initChart();
@@ -189,6 +192,30 @@ function respeak() {
   speak(answer.toLowerCase());
 }
 
+function initEmojiParticle() {
+  const canvas = document.createElement("canvas");
+  Object.assign(canvas.style, {
+    position: "fixed",
+    pointerEvents: "none",
+    top: "0px",
+    left: "0px",
+  });
+  canvas.width = document.documentElement.clientWidth;
+  canvas.height = document.documentElement.clientHeight;
+  document.body.prepend(canvas);
+
+  const offscreen = canvas.transferControlToOffscreen();
+  const worker = createWorker();
+  worker.postMessage({ type: "init", canvas: offscreen }, [offscreen]);
+
+  globalThis.addEventListener("resize", () => {
+    const width = document.documentElement.clientWidth;
+    const height = document.documentElement.clientHeight;
+    worker.postMessage({ type: "resize", width, height });
+  });
+  return { canvas, offscreen, worker };
+}
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -200,12 +227,22 @@ function hideAnswer() {
 }
 
 function nextProblem() {
+  for (let i = 0; i < Math.min(correctCount, maxParticleCount); i++) {
+    emojiParticle.worker.postMessage({
+      type: "spawn",
+      options: {
+        particleType: "popcorn",
+        originX: Math.random() * emojiParticle.canvas.width,
+        originY: Math.random() * emojiParticle.canvas.height,
+      },
+    });
+  }
   hideAnswer();
   if (firstRun) {
     firstRun = false;
   } else {
     updateChart(scoreChart, 0, alphabet.indexOf(answer));
-    solveCount += 1;
+    correctCount += 1;
   }
   answer =
     problemCandidate.splice(getRandomInt(0, problemCandidate.length), 1)[0];
@@ -309,7 +346,6 @@ function startGameTimer() {
 
 function countdown() {
   speak("Ready"); // unlock
-  solveCount = 0;
   countPanel.classList.remove("d-none");
   infoPanel.classList.add("d-none");
   playPanel.classList.add("d-none");
@@ -327,7 +363,7 @@ function countdown() {
       countPanel.classList.add("d-none");
       infoPanel.classList.remove("d-none");
       playPanel.classList.remove("d-none");
-      solveCount = 0;
+      correctCount = 0;
       document.getElementById("score").textContent = 0;
       nextProblem();
       startGameTimer();
@@ -342,7 +378,7 @@ function initTime() {
 function scoring() {
   playPanel.classList.add("d-none");
   scorePanel.classList.remove("d-none");
-  document.getElementById("score").textContent = solveCount;
+  document.getElementById("score").textContent = correctCount;
 }
 
 function updateChart(chart, labelPos, pos) {
