@@ -33,13 +33,6 @@ let voiceStopped = false;
 const audioBufferCache = {};
 loadVoices();
 const voiceInput = setVoiceInput();
-loadConfig();
-
-function loadConfig() {
-  if (localStorage.getItem("darkMode") == 1) {
-    document.documentElement.setAttribute("data-bs-theme", "dark");
-  }
-}
 
 function toggleDarkMode() {
   if (localStorage.getItem("darkMode") == 1) {
