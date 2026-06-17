@@ -1,7 +1,6 @@
-const cacheName = "2026-06-17 00:00";
+const cacheName = "2026-06-18 00:00";
 const urlsToCache = [
   "/talk-abc/index.js",
-  "/talk-abc/index.yomi",
   "/talk-abc/mp3/end.mp3",
   "/talk-abc/mp3/cat.mp3",
   "/talk-abc/mp3/correct3.mp3",
